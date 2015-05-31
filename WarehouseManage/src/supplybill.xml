@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+<struts>
+	<package name="supplybill" namespace="/supplybill" extends="default">
+		<action name="addSupplyBill" class="com.supplybill.action.AddSupplyBill">
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+			<result name="success" type="redirect">/welcome.jsp</result>
+			<result name="input">/supplybilljsp/addsupplybill.jsp</result>
+		</action>
+		<action name="findGoodsByCategory" class="com.supplybill.action.FindGoodsByCategory">
+			<result name="success" type="redirect">/supplybilljsp/addsupplybill.jsp
+			</result>
+		</action>
+		<action name="findGoodsById" class="com.supplybill.action.FindGoodsById">
+			<result name="success" type="redirect">/supplybilljsp/addsupplybill.jsp
+			</result>
+		</action>
+		<action name="querySupplyBill" class="com.supplybill.action.QuerySupplyBill">
+			<result name="success">/supplybilljsp/querysupplybill.jsp
+			</result>
+		</action>
+		<action name="deleteSupplyBill" class="com.supplybill.action.DeleteSupplyBill">
+			<result name="success" type="redirect">
+				querySupplyBill.action?choice=${choice}&amp;condition=${condition}&amp;startdate=${startDate}&amp;enddate=${endDate}&amp;currentpage=${currentPage}
+			</result>
+		</action>
+		<action name="exportSupplyBill" class="com.supplybill.action.ExportSupplyBill">
+			<result name="success" type="stream">
+				<param name="encode">true</param>
+				<param name="contentType">application/vnd.ms-excel;charset=GBK</param>
+				<param name="inputName">excelStream</param>
+				<param name="contentDisposition">attachment;filename=${fileName}</param>
+				<param name="bufferSize">20480</param>
+			</result>
+		</action>
+	</package>
+</struts>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+<struts>
+	<package name="warehouse" namespace="/warehouse" extends="default">
+		<action name="addWarehouse" class="com.warehouse.action.AddWarehouse">
+			<result name="success" type="redirect">/welcome.jsp</result>
+			<result name="input">/warehousejsp/addwarehouse.jsp</result>
+		</action>
+		<action name="queryWarehouse" class="com.warehouse.action.QueryWarehouse">
+			<result name="success">/warehousejsp/querywarehouse.jsp</result>
+		</action>
+		<action name="findWarehouseById" class="com.warehouse.action.FindWarehouseById">
+			<result name="success">/warehousejsp/updatewarehouse.jsp</result>
+		</action>
+		<action name="updateWarehouse" class="com.warehouse.action.UpdateWarehouse">
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+			<result name="success" type="redirect">
+				queryWarehouse.action?choice=${choice}&amp;condition=${condition}&amp;currentpage${currentPage}
+			</result>
+			<result name="input">/warehousejsp/updatewarehouse.jsp</result>
+		</action>
+		<action name="deleteWarehouse" class="com.warehouse.action.DeleteWarehouse">
+			<result name="success" type="redirect">
+				queryWarehouse.action?choice=${choice}&amp;condition=${condition}&amp;currentpage${currentPage}
+			</result>
+		</action>
+		<action name="queryWarehouseGoods" class="com.warehouse.action.QueryWarehouseGoods">
+			<result name="success">/warehousejsp/querywarehousegoods.jsp</result>
+		</action>
+		<action name="exportWarehouse" class="com.warehouse.action.ExportWarehouse">
+			<result name="success" type="stream">
+				<param name="contentType">
+					application/vnd.ms-excel;charset=GBK
+				</param>
+				<param name="contentDisposition">
+					attachment;filename=${fileName}
+				</param>
+				<param name="inputName">inputStream</param>
+				<param name="bufferSize">20480</param>
+			</result>
+		</action>
+	</package>
+</struts>

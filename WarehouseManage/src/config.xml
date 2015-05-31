@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--这种配置需要联网 <!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd"> -->
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	http://www.springframework.org/schema/beans/spring-beans.xsd">
+	<!-- <bean id="HelloWorldFactory" class="com.gc.bean.HelloWorldFactory"></bean> 
+		<bean id="HelloWorld" class="com.gc.impl.HelloWorld" depends-on="date" init-method="init" 
+		scope="prototype"> <constructor-arg name="date" ref="date"> </constructor-arg> 
+		<constructor-arg name="message" value="admin"></constructor-arg> </bean> 
+		<bean id="date" class="java.util.Date"> </bean> <bean name="list" class="com.gc.bean.ListTest"> 
+		<property name="list"> <list> <ref bean="HelloWorld" /> <ref bean="HelloWorld" 
+		/> <ref bean="HelloWorld" /> <ref bean="HelloWorld" /> </list> </property> 
+		</bean> -->
+	<!-- <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource" 
+		> <property name="driverClassName"> <value>com.microsoft.sqlserver.jdbc.SQLServerDriver</value> 
+		</property> <property name="url"> <value>jdbc:sqlserver://localhost:1433;DatabaseName=test</value> 
+		</property> <property name="username"> <value>admin</value> </property> <property 
+		name="password"> <value>admin</value> </property> </bean> <bean id="transactionManager" 
+		class="org.springframework.jdbc.datasource.DataSourceTransactionManager"> 
+		<property name="dataSource"> <ref bean="dataSource"/> </property> </bean> 
+		<bean id="SensorRecordDAO" class="com.gc.bean.SensorRecordDAO"> <property 
+		name="dataSource"> <ref bean="dataSource" /> </property> <property name="transactionManager"> 
+		<ref bean="transactionManager"/> </property> </bean> -->
+	<bean id="goodsDAO" class="com.dao.GoodsDAO"></bean>
+	<bean id="adminDAO" class="com.dao.AdminDAO"></bean>
+	<bean id="categoryDAO" class="com.dao.CategoryDAO"></bean>
+	<bean id="pickupbillDAO" class="com.dao.PickupBillDAO"></bean>
+	<bean id="providerDAO" class="com.dao.ProviderDAO"></bean>
+	<bean id="staffDAO" class="com.dao.StaffDAO"></bean>
+	<bean id="supplybillDAO" class="com.dao.SupplyBillDAO"></bean>
+	<bean id="warehouseDAO" class="com.dao.WarehouseDAO"></bean>
+	<bean id="goods" class="com.entity.Goods"></bean>
+	<bean id="splitepage" class="com.util.MySplitePage"></bean>
+	<bean id="provider" class="com.entity.Provider"></bean>
+	<bean id="staff" class="com.entity.Staff"></bean>
+	<bean id="warehouse" class="com.entity.Warehouse">
+	</bean>
+</beans>

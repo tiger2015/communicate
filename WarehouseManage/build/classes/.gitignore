@@ -1,0 +1,11 @@
+/com/
+/config.xml
+/goods.xml
+/hibernate.cfg.xml
+/log4j.properties
+/pickupbill.xml
+/provider.xml
+/staff.xml
+/struts.xml
+/supplybill.xml
+/warehouse.xml

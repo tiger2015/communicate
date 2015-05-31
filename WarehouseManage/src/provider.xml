@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+<struts>
+	<package name="provider" namespace="/provider" extends="default">
+		<action name="addProvider" class="com.provider.action.AddProvider">
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+			<result name="success" type="redirect">/welcome.jsp</result>
+			<result name="input">/providerjsp/addprovider.jsp</result>
+		</action>
+		<action name="queryProvider" class="com.provider.action.QueryProvider">
+			<result name="success">/providerjsp/queryprovider.jsp</result>
+		</action>
+		<action name="findProviderById" class="com.provider.action.FindProviderById">
+			<result name="success">/providerjsp/updateprovider.jsp</result>
+		</action>
+		<action name="updateProvider" class="com.provider.action.UpdateProvider">
+			<result name="success" type="redirect">
+				queryProvider.action?choice=${choice}&amp;condition=${condition}&amp;currentpage=${currentPage}
+			</result>
+		</action>
+		<action name="deleteProvider" class="com.provider.action.DeleteProvider">
+			<result name="success" type="redirect">
+				queryProvider.action?choice=${choice}&amp;condition=${condition}&amp;currentpage=${currentPage}
+			</result>
+		</action>
+		<action name="exportProvider" class="com.provider.action.ExportProvider">
+			<result name="success" type="stream">
+				<param name="contentType">
+					application/vnd.ms-excel;charset=GBK
+				</param>
+				<param name="contentDisposition">
+					attachment;filename=${fileName}
+				</param>
+				<param name="inputName">inputStream</param>
+				<param name="bufferSize">20480</param>
+			</result>
+		</action>
+	</package>
+</struts>

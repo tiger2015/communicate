@@ -1,0 +1,49 @@
+@CHARSET "UTF-8";
+
+.topdiv {
+	height: 150px;
+	background: url("../picture/bg2.jpg") no-repeat;
+}
+
+.centerdiv {
+	background: #92cff2;
+	height: 500px;
+	overflow: auto;
+	margin-top: 5px;
+}
+
+.centerdiv label {
+	font-style: normal;
+	font-weight: bold;
+}
+
+.errorMessage {
+	color: red;
+	font-size: 12px;
+}
+
+.hide {
+	display: none;
+}
+
+.show {
+	display: block;
+}
+
+.result {
+	margin-top: 28px;
+	margin-left: -391px;
+}
+
+.showtable thead {
+	color: blue;
+	font-weight: bold;
+	text-align: center;	
+}
+.showtable tbody {
+	text-align: center;
+}
+
+.showtable tbody tr:HOVER{
+	background: #fffabc;
+}

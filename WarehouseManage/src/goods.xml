@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+<struts>
+	<package name="goods" namespace="/goods" extends="default">
+		<action name="addGoods" class="com.goods.action.AddGoodsAction">
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+			<result name="success" type="redirect">/welcome.jsp</result>
+			<result name="input">/goodsjsp/addgoods.jsp</result>
+		</action>
+		<action name="queryGoods" class="com.goods.action.QueryGoods">
+			<result name="success">/goodsjsp/querygoods.jsp</result>
+		</action>
+		<action name="findGoodsById" class="com.goods.action.FindGoodsById">
+			<result name="success">/goodsjsp/updategoods.jsp</result>
+		</action>
+		<action name="updateGoods" class="com.goods.action.UpdateGoods">
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+			<result name="success" type="redirect">
+				queryGoods.action?choice=${choice}&amp;condition=${condition}&amp;currentpage=${currentPage}
+			</result>
+			<result name="input">/goodsjsp/updategoods.jsp</result>
+		</action>
+		<action name="deleteGoods" class="com.goods.action.DeleteGoods">
+			<result name="success" type="redirect">
+				queryGoods.action?choice=${choice}&amp;condition=${condition}&amp;currentpage=${currentPage}
+			</result>
+		</action>
+		<action name="exportGoods" class="com.goods.action.ExportGoods">
+			<result name="success" type="stream">
+				<param name="contentType">
+					application/vnd.ms-excel;charset=GBK
+				</param>
+				<param name="contentDisposition">
+					attachment;filename=${fileName}
+				</param>
+				<param name="inputName">inputStream</param>
+				<param name="bufferSize">20480</param>
+			</result>
+		</action>
+		
+	</package>
+</struts>

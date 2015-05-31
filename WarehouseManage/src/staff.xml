@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+<struts>
+	<package name="staff" namespace="/staff" extends="default">
+		<action name="addStaff" class="com.staff.action.AddStaff">
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+			<result name="success" type="redirect">/welcome.jsp</result>
+			<result name="input">/staffjsp/addstaff.jsp</result>
+		</action>
+		<action name="queryStaff" class="com.staff.action.QueryStaff">
+			<result name="success">/staffjsp/querystaff.jsp</result>
+		</action>
+		<action name="findStaffByStaffId" class="com.staff.action.FindStaffByStaffId">
+			<result name="success">/staffjsp/updatestaff.jsp</result>
+		</action>
+		<action name="updateStaff" class="com.staff.action.UpdateStaff">
+			<result name="success" type="redirect">
+				queryStaff.action?choice=${choice}&amp;condition=${condition}&amp;currentpage=${currentPage}
+			</result>
+		</action>
+		<action name="deleteStaff" class="com.staff.action.DeleteStaff">
+			<result name="success" type="redirect">
+				queryStaff.action?choice=${choice}&amp;condition=${condition}&amp;currentpage=${currentPage}
+			</result>
+		</action>
+		<action name="exportStaff" class="com.staff.action.ExportStaff">
+
+			<result name="success" type="stream">
+				<param name="contentType">
+					application/vnd.ms-excel;charset=GBK
+				</param>
+				<param name="contentDisposition">
+					attachment;filename=${fileName}
+				</param>
+				<param name="inputName">inputStream</param>
+				<param name="bufferSize">20480</param>
+			</result>
+		</action>
+	</package>
+</struts>

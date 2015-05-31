@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+<struts>
+	<package name="pickupbill" namespace="/pickupbill" extends="default">
+		<action name="findGoodsByCategory" class="com.pickupbill.action.FindGoodsByCategory">
+			<result name="success">/pickupbilljsp/addpickupbill.jsp</result>
+		</action>
+		<action name="findGoodsById" class="com.pickupbill.action.FindGoodsById">
+			<result name="success" type="redirect">/pickupbilljsp/addpickupbill.jsp
+			</result>
+		</action>
+		<action name="addPickupBill" class="com.pickupbill.action.AddPickupBill">
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+			<result name="success" type="redirect">/welcome.jsp</result>
+			<result name="input">/pickupbilljsp/addpickupbill.jsp</result>
+		</action>
+		<action name="queryPickupBill" class="com.pickupbill.action.QueryPickupBill">
+			<result name="success">/pickupbilljsp/querypickupbill.jsp</result>
+		</action>
+		<action name="deletePickupBill" class="com.pickupbill.action.DeletePickupBill">
+			<result name="success" type="redirect">
+				queryPickupBill.action?choice=${choice}&amp;condition=${condition}&amp;startdate=${startDate}&amp;enddate=${endDate}&amp;currentpage=${currentPage}
+			</result>
+		</action>
+		<action name="exportPickupBill" class="com.pickupbill.action.ExportPickupBill">
+			<result name="success" type="stream">
+				<param name="contentType">
+					application/vnd.ms-excel;charset=GBK
+				</param>
+				<param name="contentDisposition">
+					attachment;filename=${fileName}
+				</param>
+				<param name="inputName">inputStream</param>
+				<param name="bufferSize">20480</param>
+			</result>
+		</action>
+	</package>
+</struts>
